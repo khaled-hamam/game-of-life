@@ -3,10 +3,11 @@ import React, { Component } from 'react';
 import Engine from '../Engine/Engine';
 import Grid from './Grid';
 
+// TODO: Clear Grid Button
 class App extends Component {
   constructor(props) {
     super(props);
-    this.gameEngine = new Engine(30, 30);
+    this.gameEngine = new Engine(50, 50);
     this.state = {
       grid: this.gameEngine.grid,
       generation: this.gameEngine.currentGeneration
@@ -14,21 +15,23 @@ class App extends Component {
   }
 
   componentDidMount() {
-    this.start();
+    // this.start();
   }
 
   start = () => {
+    if (this.interval) return;
     this.interval = setInterval(() => {
       this.gameEngine.nextGeneration();
       this.setState({
         grid: this.gameEngine.grid,
         generation: this.gameEngine.currentGeneration
       });
-    }, 40);
+    }, 100);
   };
 
   stop = () => {
     clearInterval(this.interval);
+    this.interval = null;
   };
 
   render() {
@@ -38,8 +41,12 @@ class App extends Component {
         <h1>Game of Life</h1>
         <p>Generation: {generation}</p>
         <Grid grid={grid} />
-        <button onClick={this.start}>Start</button>
-        <button onClick={this.stop}>Stop</button>
+        <button className="btn btn-primary" onClick={this.start}>
+          Start
+        </button>
+        <button className="btn btn-primary" onClick={this.stop}>
+          Stop
+        </button>
       </div>
     );
   }
