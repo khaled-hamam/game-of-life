@@ -1,14 +1,13 @@
 class Engine {
-  constructor(width, height) {
+  constructor(width, height, difficulty) {
     this.width = width;
     this.height = height;
-    this.currentGeneration = 0;
-    this.initializeGrid();
-    this.seed();
-    // this.grid[5][6] = this.grid[6][7] = this.grid[7][5] = this.grid[7][6] = this.grid[7][7] = 1;
+    this.difficulty = difficulty || 4;
+    this.clearGrid();
   }
 
-  initializeGrid() {
+  clearGrid() {
+    this.currentGeneration = 0;
     this.grid = [];
     for (let i = 0; i < this.height; ++i) {
       this.grid[i] = [];
@@ -16,14 +15,17 @@ class Engine {
         this.grid[i][j] = 0;
       }
     }
+    return this.grid;
   }
 
   seed() {
+    this.currentGeneration = 0;
     for (let i = 0; i < this.height; ++i) {
       for (let j = 0; j < this.width; ++j) {
-        this.grid[i][j] = Math.floor(Math.random() * 4) === 1;
+        this.grid[i][j] = Math.floor(Math.random() * this.difficulty) === 1;
       }
     }
+    return this.grid;
   }
 
   nextGeneration() {
@@ -37,6 +39,7 @@ class Engine {
     }
     this.grid = newGrid;
     this.currentGeneration++;
+    return this.grid;
   }
 
   getNeighborsCount(i, j) {

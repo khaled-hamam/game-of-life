@@ -1,15 +1,15 @@
 import React from 'react';
 
-const Sidebar = ({ generation, onStart, onStop }) => (
+const Sidebar = ({ generation, onStart, onStop, onSeed, onClear }) => (
   <div className="sidebar h100">
     <div className="header">
       <h1>Game of Life</h1>
       <p>
-        Generation: <span class="badge badge-pill badge-dark">{generation}</span>
+        Generation: <span className="badge badge-pill badge-dark">{generation}</span>
       </p>
     </div>
     <div className="about">
-      <blockquote class="blockquote">
+      <blockquote className="blockquote">
         <p>
           The Game of Life, also known simply as Life, is a cellular automaton devised by the
           British mathematician John Horton Conway in 1970. <br /> <br />
@@ -17,20 +17,16 @@ const Sidebar = ({ generation, onStart, onStop }) => (
           state, requiring no further input. One interacts with the Game of Life by creating an
           initial configuration and observing how it evolves. <br /> <br />
           <strong>Rules:</strong>
-          <ol>
-            <li>
-              Any live cell with fewer than two live neighbors dies, as if by underpopulation.
-            </li>
-            <li>Any live cell with two or three live neighbors lives on to the next generation.</li>
-            <li>
-              Any live cell with more than three live neighbors dies, as if by overpopulation.
-            </li>
-            <li>
-              Any dead cell with exactly three live neighbors becomes a live cell, as if by
-              reproduction.
-            </li>
-          </ol>
         </p>
+        <ol>
+          <li>Any live cell with fewer than two live neighbors dies, as if by underpopulation.</li>
+          <li>Any live cell with two or three live neighbors lives on to the next generation.</li>
+          <li>Any live cell with more than three live neighbors dies, as if by overpopulation.</li>
+          <li>
+            Any dead cell with exactly three live neighbors becomes a live cell, as if by
+            reproduction.
+          </li>
+        </ol>
       </blockquote>
     </div>
     <div className="controls">
@@ -40,10 +36,10 @@ const Sidebar = ({ generation, onStart, onStop }) => (
       <button className="btn btn-lg btn-outline-secondary" onClick={onStop}>
         Stop
       </button>
-      <button className="btn btn-lg btn-outline-secondary" onClick={onStop}>
+      <button className="btn btn-lg btn-outline-secondary" onClick={onClear}>
         Clear
       </button>
-      <button className="btn btn-lg btn-outline-secondary" onClick={onStop}>
+      <button className="btn btn-lg btn-outline-secondary" onClick={onSeed}>
         Seed
       </button>
     </div>

@@ -1,10 +1,9 @@
 import React, { PureComponent } from 'react';
 import { ALIVE_COLOR, CELL_HEIGHT, DEAD_COLOR } from '../config';
 
-// TODO: onClick Cell Toggle
 class Cell extends PureComponent {
   render() {
-    const { x, y, state } = this.props;
+    const { x, y, state, onToggle } = this.props;
     return (
       <rect
         width={CELL_HEIGHT}
@@ -14,6 +13,7 @@ class Cell extends PureComponent {
         fill={state ? ALIVE_COLOR : DEAD_COLOR}
         stroke={ALIVE_COLOR}
         strokeWidth={1}
+        onClick={() => onToggle(y, x)}
       />
     );
   }
