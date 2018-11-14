@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 
 import Engine from '../Engine/Engine';
 import Grid from './Grid';
+import Sidebar from './Sidebar';
 
 // TODO: Clear Grid Button
 class App extends Component {
@@ -20,13 +21,13 @@ class App extends Component {
 
   start = () => {
     if (this.interval) return;
-    this.interval = setInterval(() => {
+    this.interval = setInterval(async () => {
       this.gameEngine.nextGeneration();
       this.setState({
         grid: this.gameEngine.grid,
         generation: this.gameEngine.currentGeneration
       });
-    }, 100);
+    }, 40);
   };
 
   stop = () => {
@@ -37,16 +38,11 @@ class App extends Component {
   render() {
     const { grid, generation } = this.state;
     return (
-      <div className="App">
-        <h1>Game of Life</h1>
-        <p>Generation: {generation}</p>
-        <Grid grid={grid} />
-        <button className="btn btn-primary" onClick={this.start}>
-          Start
-        </button>
-        <button className="btn btn-primary" onClick={this.stop}>
-          Stop
-        </button>
+      <div className="app">
+        <Sidebar generation={generation} onStart={this.start} onStop={this.stop} />
+        <div className="grid-container">
+          <Grid grid={grid} />
+        </div>
       </div>
     );
   }

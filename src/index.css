@@ -1,6 +1,64 @@
+:root {
+  --primary: #303653;
+}
+
 body {
   margin: 0;
   padding: 0;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+
+.app {
+  display: flex;
+}
+
+.sidebar {
+  max-width: 30%;
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  color: white;
+  background-color: var(--primary);
+  padding: 20pt 20pt 5pt 20pt;
+}
+
+.header h1 {
+  font-weight: 900;
+}
+
+.header p {
+  font-weight: 600;
+}
+
+.grid-container {
+  flex-grow: 3;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--light);
+}
+
+.about {
+  display: flex;
+  flex-grow: 1;
+  align-items: center;
+}
+
+.controls {
+  display: flex;
+  justify-content: space-evenly;
+  margin-bottom: 30pt;
+}
+
+.footer {
+  text-align: center;
+}
+
+.btn-outline-secondary:focus {
+  box-shadow: none;
+}
+
+.h100 {
+  height: 100vh;
 }
